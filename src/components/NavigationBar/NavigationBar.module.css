@@ -1,0 +1,61 @@
+.stripe {
+  background-color: var(--main-dark-color);
+}
+
+.navbar {
+  height: fit-content;
+  padding: 10px 12px;
+  min-width: 360px;
+  max-width: 390px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media only screen and (min-width: 768px) {
+  .navbar {
+    max-width: 768px;
+    padding: 20px 40px;
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  .navbar {
+    max-width: 1366px;
+  }
+}
+
+.navlist ul {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media only screen and (min-width: 768px) {
+  .navlist ul {
+    gap: 20px;
+  }
+}
+
+.navlist li {
+  transition: scale 0.2s ease-out;
+
+  &:hover {
+    scale: 1.1;
+  }
+}
+
+.navlist li > a {
+  padding: 4px 8px;
+  font-size: 16px;
+  color: var(--white-color);
+}
+
+@media only screen and (min-width: 768px) {
+  .navlist li > a {
+    padding: 4px 12px;
+    font-size: 20px;
+  }
+}
