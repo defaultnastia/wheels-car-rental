@@ -1,0 +1,14 @@
+.reviewCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+
+  width: 320px;
+  padding: 8px 16px;
+  pointer-events: none;
+
+  background-color: var(--main-dark-color);
+  color: var(--white-color);
+  border-radius: 16px;
+}
