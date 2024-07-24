@@ -13,16 +13,46 @@
   color: var(--main-color);
 }
 
-.card img {
+.image {
+  position: relative;
   height: 268px;
-  width: 100%;
-  object-fit: cover;
+  overflow: hidden;
   border-radius: 14px;
   margin-bottom: 14px;
 }
+
+.image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.like {
+  position: absolute;
+  z-index: 999;
+  height: 18px;
+  width: 18px;
+  fill: transparent;
+  stroke: var(--white-color);
+  top: 14px;
+  right: 14px;
+}
+
 .card ul {
-  min-height: 60px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .card ul {
+    margin-bottom: 28px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .card ul {
+    min-height: 60px;
+    margin-bottom: 16px;
+  }
 }
 
 .card li {

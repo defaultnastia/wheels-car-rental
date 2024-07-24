@@ -1,4 +1,5 @@
 import { Advert } from "../../../redux/types";
+import icons from "../../../images/icons.svg";
 import css from "./AdvertCard.module.css";
 
 type Props = {
@@ -25,7 +26,12 @@ const AdvertCard = ({ carAdvert }: Props) => {
   } = carAdvert;
   return (
     <div className={css.card}>
-      <img src={img} alt={model} />
+      <div className={css.image}>
+        <img src={img} alt={model} />
+        <svg className={css.like}>
+          <use href={`${icons}#like`}></use>
+        </svg>
+      </div>
       <div className={css.caption}>
         <p>
           {make} <span>{model}</span>, {year}

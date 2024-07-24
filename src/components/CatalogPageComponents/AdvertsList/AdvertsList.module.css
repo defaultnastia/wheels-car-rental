@@ -1,10 +1,31 @@
 .list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  row-gap: 50px;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 40px;
+}
+
+@media only screen and (min-width: 768px) {
+  .list {
+    row-gap: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }
 
 .list > li {
-  width: 274px;
+  width: 320px;
+}
+
+@media only screen and (min-width: 768px) {
+  .list > li {
+    width: 340px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .list > li {
+    width: 280px;
+  }
 }
