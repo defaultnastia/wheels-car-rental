@@ -1,15 +1,15 @@
-import css from "./HomePage.module.css";
 import Reviews from "../../components/Reviews/Reviews";
+import css from "./HomePage.module.css";
 
 const HomePage = () => {
   return (
     <div className="container">
       <div className={css.hero}>
         <h1>Hi traveler, we are WHEELS!</h1>
-        <h2>
+        <h3>
           Welcome to our car rental service, where convenience meets
           reliability!
-        </h2>
+        </h3>
       </div>
       <h2 className={css.title}>We Offer</h2>
       <ul className={css.promoList}>
@@ -32,6 +32,7 @@ const HomePage = () => {
           </p>
         </li>
       </ul>
+      <h2 className={css.title}>Reviews</h2>
       <Reviews />
     </div>
   );
