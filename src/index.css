@@ -1,15 +1,15 @@
 @import "node_modules/modern-normalize/modern-normalize.css";
 
 @font-face {
-  font-family: Lato;
-  src: url("./fonts/Lato/Lato-Regular.ttf");
+  font-family: Manrope;
+  src: url("./fonts/Manrope/Manrope-Regular.ttf");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: Lato;
-  src: url("./fonts/Lato/Lato-Bold.ttf");
+  font-family: Manrope;
+  src: url("./fonts/Manrope/Manrope-Bold.ttf");
   font-weight: 700;
   font-style: normal;
 }
@@ -19,6 +19,7 @@
   --gray-color: #8a8a8933;
   --main-dark-color: #0b44cd;
   --main-color: #3470ff;
+  --subtext-color: #12141786;
 }
 
 * {
@@ -48,7 +49,7 @@ ol {
 
 body {
   background-color: var(--white-color);
-  font-family: Lato, sans-serif;
+  font-family: Manrope, sans-serif;
 }
 
 .container {
@@ -65,8 +66,8 @@ body {
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1280px) {
   .container {
-    max-width: 1024px;
+    max-width: 1280px;
   }
 }

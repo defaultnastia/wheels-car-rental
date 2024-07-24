@@ -38,7 +38,7 @@ const Reviews = () => {
                 slidesPerView: 2,
                 spaceBetween: 40,
               },
-              1024: {
+              1280: {
                 slidesPerView: 3,
                 spaceBetween: 16,
               },

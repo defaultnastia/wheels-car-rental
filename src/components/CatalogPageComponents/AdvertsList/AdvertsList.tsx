@@ -1,5 +1,6 @@
 import AdvertCard from "../AdvertCard/AdvertCard";
 import { Advert } from "../../../redux/types";
+import css from "./AdvertsList.module.css";
 
 type Props = {
   carAdverts: Advert[];
@@ -8,7 +9,7 @@ type Props = {
 const AdvertsList = ({ carAdverts }: Props) => {
   return (
     <div>
-      <ul>
+      <ul className={css.list}>
         {carAdverts.map((carAdvert: Advert) => (
           <li key={carAdvert.id}>
             <AdvertCard carAdvert={carAdvert} />
