@@ -1,4 +1,4 @@
-import Reviews from "../../components/Reviews/Reviews";
+import Reviews from "../../components/HomePageComponents/Reviews/Reviews";
 import css from "./HomePage.module.css";
 
 const HomePage = () => {

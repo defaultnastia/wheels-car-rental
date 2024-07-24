@@ -1,4 +1,4 @@
-import { Review } from "../../services/reviewsAPI";
+import { Review } from "../../redux/types";
 import css from "./ReviewCard.module.css";
 
 type Props = {

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import Logo from "../Logo/Logo";
+import Logo from "../HomePageComponents/Logo/Logo";
 import css from "./NavigationBar.module.css";
 
 const NavigationBar = () => {
