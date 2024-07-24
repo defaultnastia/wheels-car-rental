@@ -5,25 +5,11 @@ import toast from "react-hot-toast";
 import ReviewCard from "../ReviewCard/ReviewCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import {} from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 
 const Reviews = () => {
-  const [customers, setCustomers] = useState(() => {
-    const savedCount = window.localStorage.getItem("customersCount");
-    return savedCount ? JSON.parse(savedCount) : 3465;
-  });
-
-  const [reviews, setReviews] = useState<Review[] | null>(null);
-
-  useEffect(() => {
-    setInterval(() => {
-      setCustomers(customers + 1);
-    }, 20000);
-  }, [customers]);
-
-  useEffect(() => {
-    window.localStorage.setItem("customersCount", JSON.stringify(customers));
-  }, [customers]);
+  // todo: having an empty array (single-typed value) as a default value could make a more predictable state.
+  const [reviews, setReviews] = useState<Review[] | []>([]);
 
   useEffect(() => {
     const fetchedReviews = async () => {
@@ -41,22 +27,39 @@ const Reviews = () => {
     <>
       <h2 className={css.title}>Reviews</h2>
       <div>
-        <Swiper className={css.swiper} spaceBetween={20} slidesPerView={4}>
-          {reviews?.map((review: Review) => {
-            return (
+        {reviews?.length > 0 ? (
+          <Swiper
+            className={css.swiper}
+            modules={[Autoplay]}
+            autoplay={{ delay: 5000 }}
+            breakpoints={{
+              390: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 16,
+              },
+            }}
+          >
+            {reviews?.map((review: Review) => (
               <SwiperSlide key={review.id}>
                 <ReviewCard review={review} />
               </SwiperSlide>
-            );
-          })}
-        </Swiper>
+            ))}
+          </Swiper>
+        ) : (
+          <p className={css.infoMessage}>No reviews yet</p>
+        )}
       </div>
       <div className={css.counterWrapper}>
-        <p className={css.counter}>{customers}</p>
         <p className={css.callText}>
-          customers (and the number is growing!) already trusted us their
-          transportation needs and enjoyed the freedom of the open road with
-          confidence!
+          Trust us your transportation needs and enjoy the freedom of the open
+          road with confidence!
         </p>
       </div>
     </>

@@ -13,10 +13,23 @@
     url("../../images/hero.jpg");
   background-position: center;
   background-size: cover;
-  padding: 80px 80px;
+  padding: 32px 32px;
   margin: 0 auto 40px;
   border-radius: 16px;
   color: var(--white-color);
+}
+
+@media only screen and (min-width: 768px) {
+  .hero {
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .hero {
+    padding: 80px 80px;
+    margin: 0 auto 40px;
+    border-radius: 16px;
+  }
 }
 
 .hero h1 {
@@ -25,16 +38,30 @@
 
 .promoList {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 40px;
   margin-bottom: 40px;
 }
 
+@media only screen and (min-width: 768px) {
+  .promoList {
+    flex-direction: row;
+    align-items: baseline;
+  }
+}
+
 .promoList li {
   border: 2px solid var(--main-color);
   border-radius: 16px;
-  padding: 16px 32px;
-  width: calc((100% - 20px) / 2);
+  padding: 8px 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .promoList li {
+    width: calc((100% - 20px) / 2);
+    padding: 16px 32px;
+  }
 }
 
 .promoList li h3 {

@@ -10,22 +10,16 @@
 
 .swiper {
   margin-bottom: 20px;
+  width: 100%;
 }
 
-.counterWrapper {
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 800px;
-}
-
-.counter {
-  font-size: 36px;
-  font-weight: bold;
+.infoMessage {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .callText {
+  text-align: center;
   font-style: italic;
   font-size: 20px;
 }

@@ -55,18 +55,18 @@ body {
   min-width: 360px;
   max-width: 390px;
   margin: auto;
-  padding-bottom: 20px;
+  padding: 0 8px 20px;
 }
 
 @media only screen and (min-width: 768px) {
   .container {
     max-width: 768px;
-    padding-bottom: 40px;
+    padding: 0 20px 20px;
   }
 }
 
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: 1024px) {
   .container {
-    max-width: 1366px;
+    max-width: 1024px;
   }
 }

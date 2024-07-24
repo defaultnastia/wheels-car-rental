@@ -4,7 +4,9 @@
   gap: 8px;
   text-align: center;
 
-  width: 320px;
+  margin: 0 auto;
+
+  width: 280px;
   padding: 8px 16px;
   pointer-events: none;
 
