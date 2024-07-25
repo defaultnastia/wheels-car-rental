@@ -1,0 +1,11 @@
+.more {
+  display: block;
+  margin: 100px auto;
+  font-weight: 500;
+  color: var(--main-color);
+  border-bottom: 1px solid var(--main-color);
+
+  &:hover {
+    color: var(--main-dark-color);
+  }
+}

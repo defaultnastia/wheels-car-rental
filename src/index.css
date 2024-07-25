@@ -9,6 +9,13 @@
 
 @font-face {
   font-family: Manrope;
+  src: url("./fonts/Manrope/Manrope-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Manrope;
   src: url("./fonts/Manrope/Manrope-Bold.ttf");
   font-weight: 700;
   font-style: normal;

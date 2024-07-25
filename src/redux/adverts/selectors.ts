@@ -1,3 +1,3 @@
-import { RootState } from "../store";
+import { RootState } from "../types";
 
 export const selectAdverts = (state: RootState) => state.adverts;

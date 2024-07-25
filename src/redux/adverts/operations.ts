@@ -7,9 +7,11 @@ const advertsInstance = axios.create({
 
 export const getAdverts = createAsyncThunk(
   "adverts/getAdverts",
-  async (_, thunkAPI) => {
+  async (page: number, thunkAPI) => {
     try {
-      const response = await advertsInstance.get("/adverts");
+      const response = await advertsInstance.get(
+        `/adverts?page=${page}&limit=12`
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue((error as AxiosError).message);
