@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 type FavContext = {
   favorites: number[];
@@ -16,15 +16,26 @@ type Props = {
 };
 
 export const FavoritesProvider = ({ children }: Props) => {
-  const [favorites, setFavorites] = useState<number[] | []>([]);
+  const [favorites, setFavorites] = useState<number[] | []>(() => {
+    const savedFavorites = window.localStorage.getItem("favorites");
+    if (savedFavorites) return JSON.parse(savedFavorites);
+
+    return [];
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   const addToFavorites = (id: number) => {
     setFavorites((prev) => [...prev, id]);
   };
 
   const removeFromFavorites = (id: number) => {
-    const index: number = (favorites as number[]).indexOf(id);
-    if (index > -1) setFavorites((prev) => prev.splice(index, 1));
+    const filteredArray = favorites.filter((item) => {
+      if (item !== id) return item;
+    });
+    setFavorites(filteredArray);
   };
 
   return (

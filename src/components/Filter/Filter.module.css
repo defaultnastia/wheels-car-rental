@@ -1,0 +1,25 @@
+.filterForm {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+}
+
+.filterForm > div {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+
+.filterForm label {
+  font-size: 14px;
+  color: var(--subtext-color);
+}
+
+.makeSelect {
+  padding: 14px 18px;
+  border-radius: 14px;
+  background-color: var(--light-gray-color);
+}
+
+.submit {
+}

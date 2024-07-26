@@ -51,7 +51,7 @@
 .navlist li > a {
   padding: 4px 8px;
   font-size: 16px;
-  color: var(--white-color);
+  color: var(--light-gray-color);
 }
 
 @media only screen and (min-width: 768px) {

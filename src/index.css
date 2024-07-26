@@ -23,11 +23,13 @@
 }
 
 :root {
-  --white-color: #f7f7fb;
-  --gray-color: #8a8a8933;
+  --white-color: #fff;
+  --light-gray-color: #f7f7fb;
+  --dark-gray-color: #8a8a89;
   --main-dark-color: #0b44cd;
   --main-color: #3470ff;
   --subtext-color: #12141786;
+  --black-color: #121417;
 }
 
 * {
@@ -35,10 +37,24 @@
   padding: 0;
 }
 
-button {
+button,
+input {
   background: none;
   border: none;
   cursor: pointer;
+}
+
+button {
+  color: var(--light-gray-color);
+  background-color: var(--main-color);
+  border-radius: 12px;
+  padding: 14px 44px;
+  text-align: center;
+  transition: background-color 0.15s ease-in;
+
+  &:hover {
+    background-color: var(--main-dark-color);
+  }
 }
 
 a {
@@ -46,7 +62,7 @@ a {
 }
 
 a.active {
-  border: 1px solid var(--white-color);
+  border: 1px solid var(--light-gray-color);
   border-radius: 8px;
 }
 

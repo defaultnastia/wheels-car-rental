@@ -27,15 +27,23 @@
   object-fit: cover;
 }
 
-.like {
+.image button svg {
   position: absolute;
   z-index: 999;
-  height: 18px;
-  width: 18px;
-  fill: transparent;
-  stroke: var(--white-color);
   top: 14px;
   right: 14px;
+  height: 18px;
+  width: 18px;
+}
+
+.default {
+  fill: transparent;
+  stroke: var(--light-gray-color);
+}
+
+.like {
+  fill: var(--main-color);
+  stroke: var(--main-color);
 }
 
 .card ul {
@@ -68,13 +76,6 @@
 }
 
 .card button {
-  color: var(--white-color);
-  background-color: var(--main-color);
-  border-radius: 12px;
-  padding: 12px 80px;
-  transition: background-color 0.15s ease-in;
-
-  &:hover {
-    background-color: var(--main-dark-color);
-  }
+  width: 100%;
+  padding: 12px 99px;
 }

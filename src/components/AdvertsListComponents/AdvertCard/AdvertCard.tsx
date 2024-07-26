@@ -22,6 +22,7 @@ const AdvertCard = ({
   removeFromFavorites,
 }: Props) => {
   const {
+    id,
     year,
     make,
     model,
@@ -35,7 +36,7 @@ const AdvertCard = ({
   } = carAdvert;
 
   const handleLikeButton = () => {
-    favorite ? removeFromFavorites : addToFavorites;
+    favorite ? removeFromFavorites(id) : addToFavorites(id);
   };
 
   return (
@@ -43,7 +44,7 @@ const AdvertCard = ({
       <div className={css.image}>
         <img src={img} alt={model} />
         <button onClick={handleLikeButton}>
-          <svg className={css.like}>
+          <svg className={favorite ? css.like : css.default}>
             <use href={`${icons}#like`}></use>
           </svg>
         </button>

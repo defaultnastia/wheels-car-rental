@@ -5,11 +5,11 @@
   text-transform: uppercase;
   font-size: 16px;
   font-weight: bold;
-  color: var(--white-color);
+  color: var(--light-gray-color);
 }
 
 .logo svg {
-  background-color: var(--white-color);
+  background-color: var(--light-gray-color);
   border-radius: 50%;
   width: 36px;
   height: 36px;

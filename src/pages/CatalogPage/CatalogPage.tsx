@@ -4,8 +4,9 @@ import { selectAdverts } from "../../redux/adverts/selectors";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getAdverts } from "../../redux/adverts/operations";
 import css from "./CatalogPage.module.css";
+import Filter from "../../components/Filter/Filter";
 
-//totals are hardcoded because of mock-api limited features
+// totals are hardcoded because of mock-api limited features
 const perPage = 12;
 const totals = 32;
 const totalPages = Math.ceil(totals / perPage);
@@ -26,6 +27,7 @@ const CatalogPage = () => {
 
   return (
     <div className="container">
+      <Filter />
       {carAdverts.length > 0 ? (
         <AdvertsList carAdverts={carAdverts} />
       ) : (
