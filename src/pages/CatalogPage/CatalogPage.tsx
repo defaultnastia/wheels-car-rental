@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AdvertsList from "../../components/CatalogPageComponents/AdvertsList/AdvertsList";
+import AdvertsList from "../../components/AdvertsListComponents/AdvertsList/AdvertsList";
 import { selectAdverts } from "../../redux/adverts/selectors";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getAdverts } from "../../redux/adverts/operations";

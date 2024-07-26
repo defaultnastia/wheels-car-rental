@@ -1,9 +1,13 @@
 import { Advert } from "../../../redux/types";
 import icons from "../../../images/icons.svg";
 import css from "./AdvertCard.module.css";
+import { useRef } from "react";
 
 type Props = {
   carAdvert: Advert;
+  favorite: boolean | undefined;
+  addToFavorites: (id: number) => void;
+  removeFromFavorites: (id: number) => void;
 };
 
 const extractLocation = (address: string, location: "city" | "country") => {
@@ -11,7 +15,12 @@ const extractLocation = (address: string, location: "city" | "country") => {
   return location === "city" ? city.trim() : country.trim();
 };
 
-const AdvertCard = ({ carAdvert }: Props) => {
+const AdvertCard = ({
+  carAdvert,
+  favorite,
+  addToFavorites,
+  removeFromFavorites,
+}: Props) => {
   const {
     year,
     make,
@@ -24,13 +33,20 @@ const AdvertCard = ({ carAdvert }: Props) => {
     address,
     mileage,
   } = carAdvert;
+
+  const handleLikeButton = () => {
+    favorite ? removeFromFavorites : addToFavorites;
+  };
+
   return (
     <div className={css.card}>
       <div className={css.image}>
         <img src={img} alt={model} />
-        <svg className={css.like}>
-          <use href={`${icons}#like`}></use>
-        </svg>
+        <button onClick={handleLikeButton}>
+          <svg className={css.like}>
+            <use href={`${icons}#like`}></use>
+          </svg>
+        </button>
       </div>
       <div className={css.caption}>
         <p>
