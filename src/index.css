@@ -25,6 +25,7 @@
 :root {
   --white-color: #fff;
   --light-gray-color: #f7f7fb;
+  --gray-color: #f9f9f9;
   --dark-gray-color: #8a8a89;
   --main-dark-color: #0b44cd;
   --main-color: #3470ff;
@@ -48,7 +49,7 @@ button {
   color: var(--light-gray-color);
   background-color: var(--main-color);
   border-radius: 12px;
-  padding: 12px 20px;
+  padding: 12px 50px;
   text-align: center;
   transition: background-color 0.15s ease-in;
 

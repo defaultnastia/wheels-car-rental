@@ -57,6 +57,6 @@
 @media only screen and (min-width: 768px) {
   .navlist li > a {
     padding: 4px 12px;
-    font-size: 20px;
+    font-size: 18px;
   }
 }

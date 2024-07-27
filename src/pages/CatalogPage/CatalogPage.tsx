@@ -10,6 +10,7 @@ import {
 import { cleanAdverts, nextPage } from "../../redux/adverts/actions";
 import { useEffect } from "react";
 import { getAdverts } from "../../redux/adverts/operations";
+import AdvertModal from "../../components/Modal/AdvertModal";
 
 const CatalogPage = () => {
   const carAdverts = useAppSelector(selectAdverts);
@@ -35,6 +36,7 @@ const CatalogPage = () => {
 
   return (
     <div className="container">
+      <AdvertModal />
       <Filter />
       {carAdverts.length > 0 ? (
         <AdvertsList carAdverts={carAdverts} />

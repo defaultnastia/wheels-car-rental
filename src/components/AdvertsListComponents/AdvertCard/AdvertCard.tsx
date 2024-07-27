@@ -1,17 +1,13 @@
 import { Advert } from "../../../redux/types";
 import icons from "../../../images/icons.svg";
 import css from "./AdvertCard.module.css";
+import extractLocation from "../../../helpers/extractLocation";
 
 type Props = {
   carAdvert: Advert;
   favorite: boolean | undefined;
   addToFavorites: ((id: number) => void) | undefined;
   removeFromFavorites: ((id: number) => void) | undefined;
-};
-
-const extractLocation = (address: string, location: "city" | "country") => {
-  const [country, city] = address.split(",").reverse();
-  return location === "city" ? city.trim() : country.trim();
 };
 
 const AdvertCard = ({
@@ -49,9 +45,9 @@ const AdvertCard = ({
         </button>
       </div>
       <div className={css.caption}>
-        <p>
+        <h3>
           {make} <span>{model}</span>, {year}
-        </p>
+        </h3>
         <p>{rentalPrice}</p>
       </div>
       <ul>

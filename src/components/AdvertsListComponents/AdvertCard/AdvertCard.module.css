@@ -9,6 +9,10 @@
   margin-bottom: 8px;
 }
 
+.caption h3 {
+  font-size: 16px;
+}
+
 .caption span {
   color: var(--main-color);
 }
@@ -70,7 +74,7 @@
 }
 
 .card li:not(:last-child)::after {
-  content: " |";
+  content: " ｜";
   color: var(--gray-color);
 }
 
