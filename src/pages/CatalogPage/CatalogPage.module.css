@@ -1,11 +1,15 @@
 .more {
   display: block;
   margin: 100px auto;
+  padding: 0;
+  border-radius: 0;
   font-weight: 500;
   color: var(--main-color);
   border-bottom: 1px solid var(--main-color);
+  background-color: transparent;
 
   &:hover {
     color: var(--main-dark-color);
+    background-color: transparent;
   }
 }

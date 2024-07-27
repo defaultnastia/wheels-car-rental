@@ -1,13 +1,12 @@
 import { Advert } from "../../../redux/types";
 import icons from "../../../images/icons.svg";
 import css from "./AdvertCard.module.css";
-import { useRef } from "react";
 
 type Props = {
   carAdvert: Advert;
   favorite: boolean | undefined;
-  addToFavorites: (id: number) => void;
-  removeFromFavorites: (id: number) => void;
+  addToFavorites: ((id: number) => void) | undefined;
+  removeFromFavorites: ((id: number) => void) | undefined;
 };
 
 const extractLocation = (address: string, location: "city" | "country") => {

@@ -29,7 +29,6 @@
 
 .image button svg {
   position: absolute;
-  z-index: 999;
   top: 14px;
   right: 14px;
   height: 18px;
@@ -77,5 +76,5 @@
 
 .card button {
   width: 100%;
-  padding: 12px 99px;
+  padding: 12px 20px;
 }

@@ -23,8 +23,13 @@ export type Advert = {
 
 export type advertsInitialState = {
   adverts: Advert[] | [];
+  favorites: Advert[] | [];
   error: string | null;
   loading: boolean;
+  pages: {
+    current: number;
+    total: number;
+  };
 };
 
 export type Review = {

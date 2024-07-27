@@ -1,117 +1,117 @@
 import Select from "react-select";
 import css from "./Filter.module.css";
+import makes from "../../resources/makes.json";
+import { customStyles } from "./filterSelectorStyle.ts";
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "../../redux/hooks.ts";
+import { getFilteredAdverts } from "../../redux/adverts/operations.ts";
 
-const makesArray = [
-  "Buick",
-  "Volvo",
-  "HUMMER",
-  "Subaru",
-  "Mitsubishi",
-  "Nissan",
-  "Lincoln",
-  "GMC",
-  "Hyundai",
-  "MINI",
-  "Bentley",
-  "Mercedes-Benz",
-  "Aston Martin",
-  "Pontiac",
-  "Lamborghini",
-  "Audi",
-  "BMW",
-  "Chevrolet",
-  "Mercedes-Benz",
-  "Chrysler",
-  "Kia",
-  "Land",
-];
-
-const optionsMake = makesArray.map((make) => ({
+const optionsMake = makes.map((make) => ({
   label: make,
   value: make,
 }));
 
-optionsMake.push({ label: "None", value: "" });
-
-const customStyles = {
-  control: (provided) => ({
-    ...provided,
-    background: "var(--light-gray-color)",
-    flexWrap: "nowrap",
-    border: "none",
-    padding: "14px 18px",
-    borderRadius: "14px",
-    width: "224px",
-    fontSize: "18px",
-  }),
-  valueContainer: (provided) => ({
-    ...provided,
-    padding: 0,
-    fontWeight: "500",
-    color: "var(--black-color)",
-  }),
-  placeholder: (provided) => ({
-    ...provided,
-    color: "var(--black-color)",
-  }),
-  menu: (provided) => ({
-    ...provided,
-    fontWeight: "500",
-    padding: "2px 8px",
-    background: "var(--white-color)",
-    width: "224px",
-    border: "1px solid var(--light-gray-color)",
-    borderRadius: "14px",
-    overflow: "hidden",
-    boxShadow: "0 4px 36px 0 rgba(0, 0, 0, 0.02)",
-  }),
-  menuList: (provided) => ({
-    ...provided,
-    maxHeight: "272px",
-    padding: "12px 10px 12px",
-    borderRadius: "14px",
-  }),
-  option: (_, state) => ({
-    color: state.isSelected ? "var(--black-color)" : "var(--subtext-color)",
-    marginBottom: "8px",
-    cursor: "pointer",
-  }),
+type FormFilter = {
+  make: string;
 };
 
-type FilterOptions = {
-  make: string;
-  price: string;
-  mileageFrom: string;
-  mileageTo: string;
+type Option = {
+  value: string;
+  label: string;
 };
 
 const Filter = () => {
-  const initialValues: FilterOptions = {
-    make: "",
-    price: "",
-    mileageFrom: "",
-    mileageTo: "",
-  };
+  const [options, setOptions] = useState<Option[]>([]);
+  const dispatch = useAppDispatch();
 
-  const submitFilter = (values: FilterOptions) => {
-    console.log(values);
+  const schema = yup
+    .object()
+    .shape({ make: yup.string().required("Please select the make") });
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormFilter>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      make: "",
+    },
+  });
+
+  useEffect(() => {
+    if (makes) {
+      setOptions(
+        makes.map((make) => ({
+          value: make,
+          label: make,
+        }))
+      );
+    }
+  }, []);
+
+  const onSubmit = (data: FormFilter) => {
+    dispatch(getFilteredAdverts(data.make));
   };
 
   return (
-    <div>
-      <form action="">
-        <Select
-          placeholder={"Enter the text"}
-          styles={customStyles}
-          options={optionsMake}
-          // menuIsOpen={true}
-        ></Select>
+    <div className="App">
+      <form className={css.filterForm} onSubmit={handleSubmit(onSubmit)}>
+        {optionsMake.length > 0 && (
+          <Controller
+            name="make"
+            control={control}
+            render={({ field }) => (
+              <Select
+                {...field}
+                placeholder={"Enter the text"}
+                styles={customStyles}
+                options={optionsMake}
+                components={{
+                  IndicatorSeparator: () => null,
+                }}
+                value={
+                  field.value
+                    ? options.find((option) => option.value === field.value)
+                    : null
+                }
+                onChange={(selectedOption) =>
+                  field.onChange(selectedOption?.value)
+                }
+              />
+            )}
+            rules={{ required: true }}
+          />
+        )}
+        {errors.make && <div>Field is required</div>}
         <button className={css.submit} type="submit">
           Search
         </button>
       </form>
     </div>
   );
+
+  // return (
+  //   <div>
+  //     <form className={css.filterForm} onSubmit={submitFilter}>
+  //       <Select
+  // placeholder={"Enter the text"}
+  // styles={customStyles}
+  // options={optionsMake}
+  // components={{
+  //   IndicatorSeparator: () => null,
+  // }}
+  //         // menuIsOpen={true}
+  //       ></Select>
+  // <button className={css.submit} type="submit">
+  //   Search
+  // </button>
+  //     </form>
+  //   </div>
+  // );
 };
 
 export default Filter;

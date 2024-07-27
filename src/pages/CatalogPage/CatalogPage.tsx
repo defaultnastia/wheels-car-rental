@@ -1,29 +1,25 @@
-import { useEffect, useState } from "react";
 import AdvertsList from "../../components/AdvertsListComponents/AdvertsList/AdvertsList";
-import { selectAdverts } from "../../redux/adverts/selectors";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { getAdverts } from "../../redux/adverts/operations";
 import css from "./CatalogPage.module.css";
 import Filter from "../../components/Filter/Filter";
-
-// totals are hardcoded because of mock-api limited features
-const perPage = 12;
-const totals = 32;
-const totalPages = Math.ceil(totals / perPage);
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  selectAdverts,
+  selectCurrentPage,
+  selectTotalPages,
+} from "../../redux/adverts/selectors";
+import { nextPage } from "../../redux/adverts/actions";
 
 const CatalogPage = () => {
-  const dispatch = useAppDispatch();
   const carAdverts = useAppSelector(selectAdverts);
+  const totalPages = useAppSelector(selectTotalPages);
+  const page = useAppSelector(selectCurrentPage);
 
-  const [page, setPage] = useState(1);
+  const dispatch = useAppDispatch();
 
   const handleLoadMore = () => {
-    setPage((prev) => prev + 1);
+    const newPage = page + 1;
+    dispatch(nextPage(newPage));
   };
-
-  useEffect(() => {
-    dispatch(getAdverts(page));
-  }, [dispatch, page]);
 
   return (
     <div className="container">
@@ -31,9 +27,9 @@ const CatalogPage = () => {
       {carAdverts.length > 0 ? (
         <AdvertsList carAdverts={carAdverts} />
       ) : (
-        <p>No available cars found</p>
+        <p className="emptyStateText">No available cars found 🤷🏾‍♂️</p>
       )}
-      {carAdverts.length > 0 && page < totalPages && (
+      {carAdverts.length > 0 && carAdverts.length > 11 && page < totalPages && (
         <button
           className={css.more}
           onClick={() => {
