@@ -7,7 +7,9 @@ import {
   selectCurrentPage,
   selectTotalPages,
 } from "../../redux/adverts/selectors";
-import { nextPage } from "../../redux/adverts/actions";
+import { cleanAdverts, nextPage } from "../../redux/adverts/actions";
+import { useEffect } from "react";
+import { getAdverts } from "../../redux/adverts/operations";
 
 const CatalogPage = () => {
   const carAdverts = useAppSelector(selectAdverts);
@@ -20,6 +22,16 @@ const CatalogPage = () => {
     const newPage = page + 1;
     dispatch(nextPage(newPage));
   };
+
+  useEffect(() => {
+    dispatch(getAdverts(page));
+  }, [dispatch, page]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(cleanAdverts());
+    };
+  }, [dispatch]);
 
   return (
     <div className="container">

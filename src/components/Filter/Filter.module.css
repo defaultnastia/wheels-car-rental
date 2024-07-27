@@ -27,3 +27,13 @@
 .submit {
   padding: 14px 44px;
 }
+
+.clear {
+  padding: 14px 44px;
+  background-color: var(--light-gray-color);
+  color: var(--main-dark-color);
+
+  &:hover {
+    color: var(--light-gray-color);
+  }
+}

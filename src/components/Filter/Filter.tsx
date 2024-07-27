@@ -3,11 +3,13 @@ import css from "./Filter.module.css";
 import makes from "../../resources/makes.json";
 import { customStyles } from "./filterSelectorStyle.ts";
 import { useForm, Controller } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../redux/hooks.ts";
-import { getFilteredAdverts } from "../../redux/adverts/operations.ts";
+import {
+  getAdverts,
+  getFilteredAdverts,
+} from "../../redux/adverts/operations.ts";
+import { cleanAdverts } from "../../redux/adverts/actions.ts";
 
 const optionsMake = makes.map((make) => ({
   label: make,
@@ -25,18 +27,12 @@ type Option = {
 
 const Filter = () => {
   const [options, setOptions] = useState<Option[]>([]);
+  const [isFiltered, setIsFiltered] = useState(false);
   const dispatch = useAppDispatch();
 
-  const schema = yup
-    .object()
-    .shape({ make: yup.string().required("Please select the make") });
+  let selectRef = null;
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormFilter>({
-    resolver: yupResolver(schema),
+  const { handleSubmit, control } = useForm<FormFilter>({
     defaultValues: {
       make: "",
     },
@@ -55,6 +51,15 @@ const Filter = () => {
 
   const onSubmit = (data: FormFilter) => {
     dispatch(getFilteredAdverts(data.make));
+    setIsFiltered(true);
+  };
+
+  const onClearFilter = () => {
+    if (!isFiltered) return;
+    selectRef.clearValue();
+    dispatch(cleanAdverts());
+    dispatch(getAdverts(1));
+    setIsFiltered(false);
   };
 
   return (
@@ -81,37 +86,22 @@ const Filter = () => {
                 onChange={(selectedOption) =>
                   field.onChange(selectedOption?.value)
                 }
+                ref={(ref) => (selectRef = ref)}
               />
             )}
-            rules={{ required: true }}
           />
         )}
-        {errors.make && <div>Field is required</div>}
         <button className={css.submit} type="submit">
           Search
         </button>
+        {isFiltered && (
+          <button className={css.clear} type="button" onClick={onClearFilter}>
+            Clear Filter
+          </button>
+        )}
       </form>
     </div>
   );
-
-  // return (
-  //   <div>
-  //     <form className={css.filterForm} onSubmit={submitFilter}>
-  //       <Select
-  // placeholder={"Enter the text"}
-  // styles={customStyles}
-  // options={optionsMake}
-  // components={{
-  //   IndicatorSeparator: () => null,
-  // }}
-  //         // menuIsOpen={true}
-  //       ></Select>
-  // <button className={css.submit} type="submit">
-  //   Search
-  // </button>
-  //     </form>
-  //   </div>
-  // );
 };
 
 export default Filter;
