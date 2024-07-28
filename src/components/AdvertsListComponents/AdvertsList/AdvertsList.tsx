@@ -5,9 +5,10 @@ import { useFavorites } from "../../../context/favoritesContext";
 
 type Props = {
   carAdverts: Advert[];
+  openModal: (advert: Advert) => void;
 };
 
-const AdvertsList = ({ carAdverts }: Props) => {
+const AdvertsList = ({ carAdverts, openModal }: Props) => {
   const values = useFavorites();
 
   const isFavorite = (id: number) => {
@@ -27,6 +28,7 @@ const AdvertsList = ({ carAdverts }: Props) => {
                 favorite={favorite}
                 addToFavorites={values?.addToFavorites}
                 removeFromFavorites={values?.removeFromFavorites}
+                openModal={openModal}
               />
             </li>
           );

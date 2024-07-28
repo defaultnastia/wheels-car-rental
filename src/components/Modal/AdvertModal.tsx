@@ -2,70 +2,101 @@ import Modal from "react-modal";
 import extractLocation from "../../helpers/extractLocation";
 import css from "./AdvertModal.module.css";
 import customStyles from "./customModalStyles";
-
-const data = {
-  id: 9001,
-  year: 2008,
-  make: "Buick",
-  model: "Enclave",
-  type: "SUV",
-  img: "https://ftp.goit.study/img/cars-test-task/buick_enclave.jpeg",
-  description:
-    "The Buick Enclave is a stylish and spacious SUV known for its comfortable ride and luxurious features.",
-  fuelConsumption: "10.5",
-  engineSize: "3.6L V6",
-  accessories: ["Leather seats", "Panoramic sunroof", "Premium audio system"],
-  functionalities: ["Power liftgate", "Remote start", "Blind-spot monitoring"],
-  rentalPrice: "$40",
-  rentalCompany: "Luxury Car Rentals",
-  address: "123 Example Street, Kyiv, Ukraine",
-  rentalConditions:
-    "Minimum age: 25\nValid driver's license\nSecurity deposit required",
-  mileage: 5858,
-};
+import { Advert } from "../../redux/types";
+import icons from "../../images/icons.svg";
 
 Modal.setAppElement("#root");
 
-const AdvertModal = () => {
+const transformConditions = (condition: string) => {
+  if (!condition.includes("age:")) {
+    return <li key={condition}> {condition}</li>;
+  }
+
+  const spanAge = condition.slice(-2);
   return (
-    <Modal isOpen={true} style={customStyles}>
+    <li key={condition}>
+      {" "}
+      Minimum age: <span>{spanAge}</span>
+    </li>
+  );
+};
+
+type Props = {
+  carAdvert: Advert;
+  isOpen: boolean;
+  closeModal: () => void;
+};
+
+const AdvertModal = ({ carAdvert, isOpen, closeModal }: Props) => {
+  const {
+    id,
+    year,
+    make,
+    model,
+    type,
+    img,
+    description,
+    fuelConsumption,
+    engineSize,
+    accessories,
+    functionalities,
+    rentalPrice,
+    address,
+    rentalConditions,
+    mileage,
+  } = carAdvert;
+
+  return (
+    <Modal isOpen={isOpen} style={customStyles} onRequestClose={closeModal}>
+      <button className={css.close} onClick={closeModal}>
+        <svg>
+          <use href={`${icons}#close`}></use>
+        </svg>
+      </button>
       <div className={css.content}>
         <img
           className={css.image}
-          src={data.img}
-          alt={`Photo of ${data.make} ${data.model}}`}
+          src={img}
+          alt={`Photo of ${make} ${model}}`}
         />
         <h3 className={css.caption}>
-          {data.make} <span>{data.model}</span>, {data.year}
+          {make} <span>{model}</span>, {year}
         </h3>
         <ul className={css.subList}>
-          <li>{extractLocation(data.address, "city")}</li>
-          <li>{extractLocation(data.address, "country")}</li>
-          <li>{`Id: ${data.id}`}</li>
-          <li>{`Year: ${data.year}`}</li>
-          <li>{`Type: ${data.type}`}</li>
-          <li>{`Fuel Consumption: ${data.fuelConsumption}`}</li>
-          <li>{`Engine Size: ${data.engineSize}`}</li>
+          <li>{extractLocation(address, "city")}</li>
+          <li>{extractLocation(address, "country")}</li>
+          <li>{`Id: ${id}`}</li>
+          <li>{`Year: ${year}`}</li>
+          <li>{`Type: ${type}`}</li>
+          <li>{`Fuel Consumption: ${fuelConsumption}`}</li>
+          <li>{`Engine Size: ${engineSize}`}</li>
         </ul>
-        <p className={css.description}>{data.description}</p>
+        <p className={css.description}>{description}</p>
         <h4>Accessories and functionalities:</h4>
         <ul className={css.subList}>
-          {data.accessories.map((accessory) => (
+          {accessories.map((accessory) => (
             <li key={accessory}>{accessory}</li>
           ))}
         </ul>
         <ul className={css.subList}>
-          {data.functionalities.map((functionality) => (
+          {functionalities.map((functionality) => (
             <li key={functionality}>{functionality}</li>
           ))}
         </ul>
         <h4 className={css.conditions}>Rental Conditions:</h4>
         <ul className={css.conditionsList}>
-          {data.rentalConditions.split("\n").map((condition) => (
-            <li key={condition}>{condition}</li>
-          ))}
-          <li>{`Mileage: ${data.mileage}`}</li>
-          <li>{`Price: ${data.rentalPrice}`}</li>
+          {rentalConditions
+            .split("\n")
+            .map((condition) => transformConditions(condition))}
+          <li>
+            Mileage:
+            <span>
+              {mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </span>
+          </li>
+          <li>
+            Price: <span>{rentalPrice}</span>
+          </li>
         </ul>
         <button>Rental car</button>
       </div>

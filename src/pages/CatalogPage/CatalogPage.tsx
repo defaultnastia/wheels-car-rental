@@ -8,14 +8,27 @@ import {
   selectTotalPages,
 } from "../../redux/adverts/selectors";
 import { cleanAdverts, nextPage } from "../../redux/adverts/actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAdverts } from "../../redux/adverts/operations";
 import AdvertModal from "../../components/Modal/AdvertModal";
+import { Advert } from "../../redux/types";
 
 const CatalogPage = () => {
   const carAdverts = useAppSelector(selectAdverts);
   const totalPages = useAppSelector(selectTotalPages);
   const page = useAppSelector(selectCurrentPage);
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalData, setModalData] = useState<Advert>(null);
+
+  const openModal = (advert) => {
+    setModalData(advert);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   const dispatch = useAppDispatch();
 
@@ -36,10 +49,17 @@ const CatalogPage = () => {
 
   return (
     <div className="container">
-      <AdvertModal />
+      <button onClick={openModal}>Open Modal</button>
+      {modalIsOpen && (
+        <AdvertModal
+          carAdvert={modalData}
+          isOpen={modalIsOpen}
+          closeModal={closeModal}
+        />
+      )}
       <Filter />
       {carAdverts.length > 0 ? (
-        <AdvertsList carAdverts={carAdverts} />
+        <AdvertsList carAdverts={carAdverts} openModal={openModal} />
       ) : (
         <p className="emptyStateText">No available cars found 🤷🏾‍♂️</p>
       )}

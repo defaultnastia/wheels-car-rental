@@ -8,6 +8,7 @@ type Props = {
   favorite: boolean | undefined;
   addToFavorites: ((id: number) => void) | undefined;
   removeFromFavorites: ((id: number) => void) | undefined;
+  openModal: (advert: Advert) => void;
 };
 
 const AdvertCard = ({
@@ -15,6 +16,7 @@ const AdvertCard = ({
   favorite,
   addToFavorites,
   removeFromFavorites,
+  openModal,
 }: Props) => {
   const {
     id,
@@ -32,6 +34,10 @@ const AdvertCard = ({
 
   const handleLikeButton = () => {
     favorite ? removeFromFavorites(id) : addToFavorites(id);
+  };
+
+  const handleOpenModal = () => {
+    openModal(carAdvert);
   };
 
   return (
@@ -59,27 +65,9 @@ const AdvertCard = ({
         <li>{mileage}</li>
         <li>{functionalities[0]}</li>
       </ul>
-      <button>Learn more</button>
+      <button onClick={handleOpenModal}>Learn more</button>
     </div>
   );
 };
 
 export default AdvertCard;
-
-//  const {
-//    year,
-//    make,
-//    model,
-//    type,
-//    img,
-//    description,
-//    fuelConsumption,
-//    engineSize,
-//    accessories,
-//    functionalities,
-//    rentalPrice,
-//    rentalCompany,
-//    address,
-//    rentalConditions,
-//    mileage,
-//  } = carAdvert;

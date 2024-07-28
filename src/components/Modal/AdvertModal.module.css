@@ -1,3 +1,22 @@
+.close {
+  background: none;
+  width: fit-content;
+  padding: 0;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+
+  &:hover {
+    background: none;
+  }
+}
+
+.close svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--black-color);
+}
+
 .image {
   display: block;
   width: 100%;
@@ -61,4 +80,9 @@
   background-color: var(--gray-color);
   padding: 7px 14px;
   border-radius: 35px;
+}
+
+.conditionsList span {
+  color: var(--main-color);
+  font-weight: 600;
 }
