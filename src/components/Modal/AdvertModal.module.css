@@ -86,3 +86,18 @@
   color: var(--main-color);
   font-weight: 600;
 }
+
+.cta {
+  color: var(--light-gray-color);
+  background-color: var(--main-color);
+  border-radius: 12px;
+  padding: 12px 50px;
+  text-align: center;
+  transition: background-color 0.15s ease-in;
+  font-size: 14px;
+  font-weight: 500;
+
+  &:hover {
+    background-color: var(--main-dark-color);
+  }
+}

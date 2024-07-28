@@ -98,7 +98,9 @@ const AdvertModal = ({ carAdvert, isOpen, closeModal }: Props) => {
             Price: <span>{rentalPrice}</span>
           </li>
         </ul>
-        <button>Rental car</button>
+        <a className={css.cta} href="tel:+380730000000">
+          Rental car
+        </a>
       </div>
     </Modal>
   );
