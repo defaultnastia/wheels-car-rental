@@ -50,6 +50,7 @@ const Filter = () => {
   }, []);
 
   const onSubmit = (data: FormFilter) => {
+    if (!data.make) return;
     dispatch(getFilteredAdverts(data.make));
     setIsFiltered(true);
   };

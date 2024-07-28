@@ -53,17 +53,17 @@ const advertsSlice = createSlice({
       .addCase(getFilteredAdverts.fulfilled, (state, action) => {
         state.adverts = action.payload;
       })
-      .addCase(getAdverts.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getAdverts.rejected, (state, action) => {
+      .addMatcher(isRejected, (state, action) => {
+        state.loading = false;
         state.error = String(action.payload);
       })
-      .addMatcher(isAnyOf(isRejected, isFulfilled), (state) => {
+      .addMatcher(isFulfilled, (state) => {
         state.loading = false;
-      })
-      .addMatcher(isAnyOf(isPending, isFulfilled), (state) => {
         state.error = null;
+      })
+      .addMatcher(isPending, (state) => {
+        state.error = null;
+        state.loading = true;
       });
   },
 });

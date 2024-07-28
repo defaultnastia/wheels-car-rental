@@ -5,30 +5,19 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   selectAdverts,
   selectCurrentPage,
+  selectIsLoading,
   selectTotalPages,
 } from "../../redux/adverts/selectors";
 import { cleanAdverts, nextPage } from "../../redux/adverts/actions";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getAdverts } from "../../redux/adverts/operations";
-import AdvertModal from "../../components/Modal/AdvertModal";
-import { Advert } from "../../redux/types";
+import CustomLoader from "../../components/Loader/CustomLoader";
 
 const CatalogPage = () => {
   const carAdverts = useAppSelector(selectAdverts);
   const totalPages = useAppSelector(selectTotalPages);
   const page = useAppSelector(selectCurrentPage);
-
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalData, setModalData] = useState<Advert>(null);
-
-  const openModal = (advert) => {
-    setModalData(advert);
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  const isLoading = useAppSelector(selectIsLoading);
 
   const dispatch = useAppDispatch();
 
@@ -49,20 +38,16 @@ const CatalogPage = () => {
 
   return (
     <div className="container">
-      <button onClick={openModal}>Open Modal</button>
-      {modalIsOpen && (
-        <AdvertModal
-          carAdvert={modalData}
-          isOpen={modalIsOpen}
-          closeModal={closeModal}
-        />
-      )}
+      {isLoading && <CustomLoader />}
+
       <Filter />
-      {carAdverts.length > 0 ? (
-        <AdvertsList carAdverts={carAdverts} openModal={openModal} />
-      ) : (
+
+      {carAdverts.length > 0 && <AdvertsList carAdverts={carAdverts} />}
+
+      {!isLoading && !carAdverts.length && (
         <p className="emptyStateText">No available cars found 🤷🏾‍♂️</p>
       )}
+
       {carAdverts.length > 0 && carAdverts.length > 11 && page < totalPages && (
         <button
           className={css.more}
