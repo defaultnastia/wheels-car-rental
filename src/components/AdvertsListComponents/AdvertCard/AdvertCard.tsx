@@ -2,6 +2,7 @@ import { Advert } from "../../../redux/types";
 import icons from "../../../images/icons.svg";
 import css from "./AdvertCard.module.css";
 import extractLocation from "../../../helpers/extractLocation";
+import { useMediaQuery } from "react-responsive";
 
 type Props = {
   carAdvert: Advert;
@@ -18,6 +19,8 @@ const AdvertCard = ({
   removeFromFavorites,
   openModal,
 }: Props) => {
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+
   const {
     id,
     year,
@@ -65,7 +68,13 @@ const AdvertCard = ({
         <li>{mileage}</li>
         <li>{functionalities[0]}</li>
       </ul>
-      <button onClick={handleOpenModal}>Learn more</button>
+      {isMobile ? (
+        <a className="cta" href="tel:+380730000000">
+          Call us to learn more
+        </a>
+      ) : (
+        <button onClick={handleOpenModal}>Call us to learn more</button>
+      )}
     </div>
   );
 };

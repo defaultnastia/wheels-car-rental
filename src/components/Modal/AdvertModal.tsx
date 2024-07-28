@@ -21,6 +21,14 @@ const transformConditions = (condition: string) => {
   );
 };
 
+const onAfterOpen = () => {
+  document.body.style.overflow = "hidden";
+};
+
+const onAfterClose = () => {
+  document.body.style.overflow = "unset";
+};
+
 type Props = {
   carAdvert: Advert;
   isOpen: boolean;
@@ -47,7 +55,13 @@ const AdvertModal = ({ carAdvert, isOpen, closeModal }: Props) => {
   } = carAdvert;
 
   return (
-    <Modal isOpen={isOpen} style={customStyles} onRequestClose={closeModal}>
+    <Modal
+      isOpen={isOpen}
+      style={customStyles}
+      onRequestClose={closeModal}
+      onAfterOpen={onAfterOpen}
+      onAfterClose={onAfterClose}
+    >
       <button className={css.close} onClick={closeModal}>
         <svg>
           <use href={`${icons}#close`}></use>
@@ -98,7 +112,7 @@ const AdvertModal = ({ carAdvert, isOpen, closeModal }: Props) => {
             Price: <span>{rentalPrice}</span>
           </li>
         </ul>
-        <a className={css.cta} href="tel:+380730000000">
+        <a className="cta" href="tel:+380730000000">
           Rental car
         </a>
       </div>

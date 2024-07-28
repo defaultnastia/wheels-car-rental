@@ -6,10 +6,13 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    width: "540px",
     borderRadius: "24px",
     border: "none",
     padding: "36px",
+    width: "540px",
+  },
+  overlay: {
+    backgroundColor: "var(--backdrop-color)",
   },
 };
 
