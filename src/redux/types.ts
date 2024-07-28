@@ -1,7 +1,6 @@
-// === === === data types === === ===
-
 import store from "./store";
 
+// === === === data types === === ===
 export type Advert = {
   id: number;
   year: number;
@@ -32,14 +31,7 @@ export type advertsInitialState = {
   };
 };
 
-export type Review = {
-  id: string;
-  name: string;
-  review: string;
-};
-
 // === === ===  redux types === === ===
-
 export type AppStore = typeof store;
 export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = typeof store.dispatch;

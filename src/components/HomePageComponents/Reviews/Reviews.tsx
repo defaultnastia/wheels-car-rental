@@ -3,10 +3,9 @@ import toast from "react-hot-toast";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import { getReviews } from "../../../services/reviewsAPI";
+import { getReviews, Review } from "../../../services/reviewsAPI";
 import ReviewCard from "../ReviewCard/ReviewCard";
 import css from "./Reviews.module.css";
-import { Review } from "../../../redux/types";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState<Review[] | []>([]);

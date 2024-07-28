@@ -1,15 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-
-type FavContext = {
-  favorites: number[];
-  addToFavorites: (id: number) => void;
-  removeFromFavorites: (id: number) => void;
-};
-
-const favoritesContext = createContext<FavContext | null>(null);
-
-export const useFavorites = () => useContext(favoritesContext);
-//! === TODO === move context to another file
+import React, { useEffect, useState } from "react";
+import { FavoritesContext } from "./FavoritesContext.ts";
 
 type Props = {
   children: React.ReactNode;
@@ -39,10 +29,10 @@ export const FavoritesProvider = ({ children }: Props) => {
   };
 
   return (
-    <favoritesContext.Provider
+    <FavoritesContext.Provider
       value={{ favorites, addToFavorites, removeFromFavorites }}
     >
       {children}
-    </favoritesContext.Provider>
+    </FavoritesContext.Provider>
   );
 };

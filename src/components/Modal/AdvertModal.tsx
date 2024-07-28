@@ -1,9 +1,9 @@
 import Modal from "react-modal";
-import extractLocation from "../../helpers/extractLocation";
-import css from "./AdvertModal.module.css";
-import customStyles from "./customModalStyles";
 import { Advert } from "../../redux/types";
+import extractLocation from "../../helpers/extractLocation";
 import icons from "../../images/icons.svg";
+import customStyles from "./customModalStyles";
+import css from "./AdvertModal.module.css";
 
 Modal.setAppElement("#root");
 

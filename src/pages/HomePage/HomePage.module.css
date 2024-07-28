@@ -19,11 +19,6 @@
   color: var(--light-gray-color);
 }
 
-@media only screen and (min-width: 768px) {
-  .hero {
-  }
-}
-
 @media only screen and (min-width: 1280px) {
   .hero {
     padding: 80px 80px;

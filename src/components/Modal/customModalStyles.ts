@@ -10,6 +10,7 @@ const customStyles = {
     border: "none",
     padding: "36px",
     width: "540px",
+    maxHeight: "90vh",
   },
   overlay: {
     backgroundColor: "var(--backdrop-color)",

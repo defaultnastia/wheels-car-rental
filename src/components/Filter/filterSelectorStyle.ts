@@ -1,4 +1,3 @@
-//! fix dropdown indicator
 export const customStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -22,11 +21,6 @@ export const customStyles = {
     margin: 0,
     padding: 0,
   }),
-  // indicatorContainer: (provided) => ({
-  //   ...provided,
-  //   margin: 0,
-  //   padding: 0,
-  // }),
   placeholder: (provided) => ({
     ...provided,
     color: "var(--black-color)",

@@ -1,17 +1,17 @@
-import AdvertsList from "../../components/AdvertsListComponents/AdvertsList/AdvertsList";
-import css from "./CatalogPage.module.css";
-import Filter from "../../components/Filter/Filter";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { getAdverts } from "../../redux/adverts/operations";
+import { cleanAdverts, nextPage } from "../../redux/adverts/actions";
 import {
   selectAdverts,
   selectCurrentPage,
   selectIsLoading,
   selectTotalPages,
 } from "../../redux/adverts/selectors";
-import { cleanAdverts, nextPage } from "../../redux/adverts/actions";
-import { useEffect } from "react";
-import { getAdverts } from "../../redux/adverts/operations";
 import CustomLoader from "../../components/Loader/CustomLoader";
+import Filter from "../../components/Filter/Filter";
+import AdvertsList from "../../components/AdvertsListComponents/AdvertsList/AdvertsList";
+import css from "./CatalogPage.module.css";
 
 const CatalogPage = () => {
   const carAdverts = useAppSelector(selectAdverts);

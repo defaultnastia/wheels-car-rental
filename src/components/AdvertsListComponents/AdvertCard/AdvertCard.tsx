@@ -1,8 +1,8 @@
+import { useMediaQuery } from "react-responsive";
 import { Advert } from "../../../redux/types";
+import extractLocation from "../../../helpers/extractLocation";
 import icons from "../../../images/icons.svg";
 import css from "./AdvertCard.module.css";
-import extractLocation from "../../../helpers/extractLocation";
-import { useMediaQuery } from "react-responsive";
 
 type Props = {
   carAdvert: Advert;
@@ -73,7 +73,7 @@ const AdvertCard = ({
           Call us to learn more
         </a>
       ) : (
-        <button onClick={handleOpenModal}>Call us to learn more</button>
+        <button onClick={handleOpenModal}>Learn more</button>
       )}
     </div>
   );

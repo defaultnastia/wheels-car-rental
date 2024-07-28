@@ -1,13 +1,12 @@
-import AdvertCard from "../AdvertCard/AdvertCard";
-import { Advert } from "../../../redux/types";
-import css from "./AdvertsList.module.css";
-import { useFavorites } from "../../../context/favoritesContext";
 import { useState } from "react";
+import AdvertCard from "../AdvertCard/AdvertCard";
 import AdvertModal from "../../Modal/AdvertModal";
+import { Advert } from "../../../redux/types";
+import { useFavorites } from "../../../context/FavoritesContext";
+import css from "./AdvertsList.module.css";
 
 type Props = {
   carAdverts: Advert[];
-  // openModal?: (advert: Advert) => void;
 };
 
 const AdvertsList = ({ carAdverts }: Props) => {

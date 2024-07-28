@@ -1,15 +1,15 @@
-import Select from "react-select";
-import css from "./Filter.module.css";
-import makes from "../../resources/makes.json";
-import { customStyles } from "./filterSelectorStyle.ts";
-import { useForm, Controller } from "react-hook-form";
 import { useEffect, useState } from "react";
+import Select from "react-select";
+import { useForm, Controller } from "react-hook-form";
+import makes from "../../resources/makes.json";
 import { useAppDispatch } from "../../redux/hooks.ts";
+import { cleanAdverts } from "../../redux/adverts/actions.ts";
 import {
   getAdverts,
   getFilteredAdverts,
 } from "../../redux/adverts/operations.ts";
-import { cleanAdverts } from "../../redux/adverts/actions.ts";
+import { customStyles } from "./filterSelectorStyle.ts";
+import css from "./Filter.module.css";
 
 const optionsMake = makes.map((make) => ({
   label: make,

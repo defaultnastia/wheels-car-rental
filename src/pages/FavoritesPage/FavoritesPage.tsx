@@ -1,14 +1,14 @@
 import { useEffect } from "react";
+import { useFavorites } from "../../context/FavoritesContext";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getFavoriteAdvert } from "../../redux/adverts/operations";
-import { useFavorites } from "../../context/favoritesContext";
+import { cleanFavorites } from "../../redux/adverts/actions";
 import {
   selectFavorites,
   selectIsLoading,
 } from "../../redux/adverts/selectors";
-import AdvertsList from "../../components/AdvertsListComponents/AdvertsList/AdvertsList";
-import { cleanFavorites } from "../../redux/adverts/actions";
 import CustomLoader from "../../components/Loader/CustomLoader";
+import AdvertsList from "../../components/AdvertsListComponents/AdvertsList/AdvertsList";
 
 const FavoritesPage = () => {
   const dispatch = useAppDispatch();

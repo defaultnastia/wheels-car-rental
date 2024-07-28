@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { PulseLoader, SyncLoader } from "react-spinners";
+import { SyncLoader } from "react-spinners";
 import css from "./CustomLoader.module.css";
 
 const CustomLoader = () => {

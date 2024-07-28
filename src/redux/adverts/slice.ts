@@ -1,6 +1,5 @@
 import {
   createSlice,
-  isAnyOf,
   isFulfilled,
   isPending,
   isRejected,
@@ -12,7 +11,7 @@ import {
   getFavoriteAdvert,
 } from "./operations";
 
-// total pages are hardcoded because of mock-api limited features
+// === total pages are hardcoded because of mock-api limited features ===
 const perPage = 12;
 const totals = 32;
 const totalPages = Math.ceil(totals / perPage);
