@@ -1,8 +1,9 @@
 # wheels-car-rental
 
-A web-application for a car rental company, where user can check info about the
+WHEELS is a web-application for a car rental company, where user can check info about the
 available cars and contact the rental service.
-![Screenshot of the page with adverts list](image.png)
+
+![wheels_demo](https://github.com/user-attachments/assets/0b9d8608-c7be-4384-8c2c-22000c7786f1)
 
 Supports resolutions from 390px. Uses mockAPI service.
 
