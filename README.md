@@ -22,4 +22,4 @@ Libraries and utils:
 - [axios](https://www.npmjs.com/package/axios)
 - and some more
 
-Production: https://main--relaxed-donut-dd6a9d.netlify.app/catalog
+Production: https://relaxed-donut-dd6a9d.netlify.app
