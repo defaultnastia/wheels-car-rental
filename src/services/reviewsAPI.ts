@@ -8,7 +8,7 @@ export type Review = {
 };
 
 const reviewsInstance = axios.create({
-  baseURL: "https://669faff8b132e2c136fec738.mockapi.io",
+  baseURL: "https://66e1613cc831c8811b54bb97.mockapi.io/api",
 });
 
 export const getReviews = async (): Promise<Review[] | []> => {
