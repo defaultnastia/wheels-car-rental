@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
 const advertsInstance = axios.create({
-  baseURL: "https://669faff8b132e2c136fec738.mockapi.io",
+  baseURL: "https://66e1613cc831c8811b54bb97.mockapi.io/api",
 });
 
 export const getAdverts = createAsyncThunk(
